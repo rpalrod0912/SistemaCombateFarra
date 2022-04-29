@@ -1,6 +1,6 @@
 package Juego.SistemaCombate
 
-abstract class Persona(var vida:Double,var inventario:ArrayList<Armas> = arrayListOf(),var armaEquipada:Armas,var estado:Boolean) {
+abstract class Persona(var vida:Double,var inventario:ArrayList<Armas> = arrayListOf(),var armaEquipada:Armas?,var estado:Boolean) {
 
     open fun añadeArma(arma:Armas):String{
         var mensaje="EL INVENTARIO HA SIDO ACTUALIZADO"

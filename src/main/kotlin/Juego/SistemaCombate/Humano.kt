@@ -7,11 +7,10 @@ open class Humano(vida:Double=100.0,inventario:ArrayList<Armas> = arrayListOf(),
             Enemigo.estado=false
             return Enemigo.vida
         }
-        this.armaEquipada.atacar()
-        Enemigo.vida-=this.armaEquipada.potencia
+        this.armaEquipada?.atacar()
+        Enemigo.vida-=this.armaEquipada!!.potencia
         return Enemigo.vida
     }
-
 
     override fun toString(): String {
         return "        TIPO HUMANO BASICO \n"+super.toString()
@@ -39,7 +38,6 @@ fun main(){
     miEnemigo.defender()
     miHumano.atacar(miEnemigo)
     println(miEnemigo)
-    miEnemigo.defender()
     miHumano.atacar(miEnemigo)
     println(miEnemigo)
 }
