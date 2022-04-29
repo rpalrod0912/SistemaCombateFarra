@@ -30,7 +30,7 @@ fun main(){
     miHumano.atacar(miEnemigo)
     (miHumano.armaEquipada as Rifle).cargar()
     miHumano.atacar(miEnemigo)
-    println(miEnemigo)
+    println(miEnemigo)//
     println(miHumano.atacar(miEnemigo))
     println(miEnemigo)
     (miHumano.armaEquipada as Rifle).cargar()
