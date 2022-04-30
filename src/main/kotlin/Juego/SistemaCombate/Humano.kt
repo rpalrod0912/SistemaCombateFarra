@@ -3,6 +3,7 @@ package Juego.SistemaCombate
 open class Humano(vida:Double=100.0,inventario:ArrayList<Armas> = arrayListOf(), armaEquipada:Armas,estado:Boolean=false):Persona(vida, inventario, armaEquipada,estado) {
 
     override fun atacar(Enemigo:Persona):Double {
+        this.estado=false //Se inicializa el estado defensa en false pues no te puedes defender mientras atacas
         if (Enemigo.estado){
             Enemigo.estado=false
             return Enemigo.vida

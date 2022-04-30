@@ -29,29 +29,41 @@ fun accionesJugador(accion:String,Jugador:Humano,Enemigo:Enemigo){
         "B"-> println(Jugador.defender())
         "C"-> println(Jugador.inventario)
         "D"-> {println(Jugador.toString())
+        "E"->{if (Jugador.armaEquipada is Cuchillo) {
+            (Jugador.armaEquipada as Cuchillo).afilar())
+        }}
         println(Enemigo.toString())}
     }
+}
+fun mensajeArma(arma:Armas?):String{
+    var msj=""
+    if (arma is ArmaBlanca) msj="AFILAR"
+    if (arma is ArmaFuego) msj="CARGAR"
+    return msj
 }
 fun Juego(){
     val listaArmas= arrayListOf<Armas>(Rifle(),Escopeta(),Cuchillo(),Hacha(),Pistola())
     val EnemigoInicial=Enemigo(vida = 50.00, armaEquipada = Cuchillo(potencia = 20.00))
     val armaInicial:ArmaBlanca=Cuchillo(potencia = 30.00,afilada = true)
-    val player=Humano(armaEquipada = armaInicial)
+    val player=Humano(armaEquipada = armaInicial, inventario = arrayListOf(armaInicial))
     if (Menu())
         while (player.vida>0 && EnemigoInicial.vida>0) {
-            println("""********************************************************************************************************************
-                |      |                                                                                                                  |
-                |      |   VIDA:${player.vida}                                      A)ATACAR                  B)DEFENDER                  |                                                                       
-                |      |                                                                                                                  |      
-                |      |   Arma Actual:${player.armaEquipada?.nombreArma()}         C)INVENTARIO              D)INFO                      |                                                                      
-                |      |                                                                                                                  |
-                |      *******************************************************************************************************************+
+
+            println(""" VIDA ENEMIGO:${EnemigoInicial.vida}
+********************************************************************************************************************
+                            |                                                                                                                                                       |
+                            |   VIDA:${player.vida}                                      A)ATACAR                  B)DEFENDER           E)${mensajeArma(player.armaEquipada)}       |                                                                       
+                            |                                                                                                                                                       |      
+                            |   Arma Actual:${player.armaEquipada?.nombreArma()}                      C)INVENTARIO              D)INFO              F)                                                           |                                                                      
+                            |                                                                                                                                                       |
+*******************************************************************************************************************+
             """.trimMargin())
             println("JUGADOR QUE DESEAS HACER:")
             val accion= readLine()!!.toString()
             accionesJugador(accion,player,EnemigoInicial)
             if (player.estado) println("TE HAS DEFENDIDO DEL ATAQUE!!")
             else println("EL ENEMIGO TE HA ATACADO :${player.vida-EnemigoInicial.atacar(player)} PUNTOS DE DAÑO")
+
 
 }
     if (player.vida<=0){
