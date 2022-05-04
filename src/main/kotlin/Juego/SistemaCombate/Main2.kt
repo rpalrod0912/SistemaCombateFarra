@@ -19,7 +19,7 @@ fun Menu():Boolean{
                 println("TERMINANDO PROGRAMA.... HASTA LUEGO!!!")
                 break}
             else -> println("ESCRIBE SI PARA INICIAR PARTIDA O NO PARA TERMINAR EL PROGRAMA POR FAVOR!!!")
-    }
+        }
     }
     return miBoolean
 }
@@ -28,13 +28,11 @@ fun accionesJugador(accion:String,Jugador:Humano,Enemigo:Enemigo){
         "A"-> println(Jugador.atacar(Enemigo))
         "B"-> println(Jugador.defender())
         "C"-> println(Jugador.inventario)
-        "D"-> {println(Jugador.toString())
-        "E"->{if (Jugador.armaEquipada is Cuchillo) {
-            (Jugador.armaEquipada as Cuchillo).afilar())
-        }}
-        println(Enemigo.toString())}
-    }
-}
+        "D"-> println(Jugador.toString())
+        "E"-> if (Jugador.armaEquipada is Cuchillo) (Jugador.armaEquipada as Cuchillo).afilar()
+        }
+        println(Enemigo)}
+
 fun mensajeArma(arma:Armas?):String{
     var msj=""
     if (arma is ArmaBlanca) msj="AFILAR"
